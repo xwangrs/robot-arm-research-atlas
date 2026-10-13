@@ -1,0 +1,161 @@
+﻿id,group,display_paper,paper,title,url,version,section,quote,translation,limitations,future,kind,original_nodes,evidence_note,quote_word_count
+L01,技能/程序,SayCan,SayCan,"Do As I Can, Not As I Say: Grounding Language in Robotic Affordances",https://arxiv.org/html/2204.01691v2#S8,2204.01691v2 · 2022,"§8 Conclusions, Limitations and Future Work",the primary bottleneck of the system is in the range and capabilities of the underlying skills.,作者将系统的主要瓶颈定位在底层技能的覆盖范围和能力上。,"会继承语言模型的局限与偏差；系统主要受底层技能覆盖与能力约束。
+即使技能价值预测很高，实际技能仍可能失败，而系统不易对此作出反应。","扩展技能集合并提高技能鲁棒性；通过适当提示让语言模型纠正技能失败。
+利用机器人真实交互经验改进语言模型，并研究语言是否适合表达各种机器人任务。",作者自述局限；作者未来方向,external,来自作者结论中的明确表述。这里记录2022年的系统边界，不据此断言2026年仍无人解决。,16
+L02,技能/程序,Inner Monologue,Inner Monologue,Inner Monologue: Embodied Reasoning through Planning with Language Models,https://arxiv.org/html/2207.05608v1#S5,2207.05608v1 · 2022,§5 Limitations；Limiting assumptions and failure modes；Limitations of results and future work,the LLM planners ignored the environment feedback,作者观察到语言模型规划器有时忽略环境反馈。,"部分实验的场景描述依赖人或脚本提供的理想反馈。
+成功检测误报、漏报以及规划和控制错误都会导致失败；规划器有时仍调用场景中不存在物体的技能。
+底层控制能力限制任务完成与语言模型能够推理的任务范围。","借助图像或视频描述、视觉问答实现无人工理想反馈的系统。
+更好地融合可能出错的信息来源，例如显式描述反馈不确定性，并加入安全等反馈。",作者自述局限；作者失败分析；作者未来方向,external,所有条目均位于作者的Limitations章节；不把当时的反馈局限自动当作今天的领域结论。,7
+L03,技能/程序,Code as Policies,Code as Policies,Code as Policies: Language Model Programs for Embodied Control,https://arxiv.org/html/2209.07753v4#S5,2209.07753v4,§V Discussion and Limitations,we cannot tell if a response will be correct a priori.,作者指出无法事先判断生成的响应是否正确。,"可泛化范围受感知API能描述的内容与可用控制原语限制；过多参数会使提示过载。
+比提示示例更长、更复杂或抽象层次不同的指令处理困难。
+假设所有给定指令可行；跨本体生成方案仍不稳定。",作者提出跨本体能力可能需要更大的、在领域代码上训练的语言模型。,作者自述局限；作者讨论中的改进建议,code,未来项保留作者的可能性语气；不把代码可执行等同于机器人任务一定正确。,11
+L04,技能/程序,VoxPoser,VoxPoser,VoxPoser: Composable 3D Value Maps for Robotic Manipulation with Language Models,https://arxiv.org/html/2307.05973v1#S6,2307.05973v1 · 2023,"§6 Conclusion, Limitations, & Future Works",manual prompt engineering is required for LLMs.,该系统仍需人工进行提示设计。,"依赖外部感知，限制整体视觉推理和精细几何理解。
+接触丰富任务若要达到同等泛化程度，仍需要通用动力学模型。
+运动规划只考虑末端轨迹；作者认为全臂规划可能更合适。","使用多模态语言模型直接关联视觉；用对齐和提示方法改善价值图并减少提示工程。
+为合成价值图研究更好的轨迹优化方法。",作者自述局限；作者未来方向,code,均出自§6，保持在VoxPoser当时系统范围内。,7
+L05,技能/程序,ReKep,ReKep,ReKep: Spatio-Temporal Reasoning of Relational Keypoint Constraints for Robotic Manipulation,https://arxiv.org/html/2409.01652v1#S5,2409.01652v1 · 2024,§5 Conclusion & Limitations；§4.3 System Error Breakdown；附录A.11 Extended Discussions on Limitations,the current formulation assumes a fixed sequence of stages,当前方法假设每项任务的阶段序列固定。,"关键点前向模型使用局部刚性假设，闭环依赖易受遮挡影响的准确跟踪。
+改变任务阶段序列需要高频运行关键点提议与VLM，计算开销较大。
+多阶段时序约束生成不够稳定；任务空间规划可能得到运动学难以实现的位姿，双臂搜索也更慢。","作者讨论关节空间规划可能缓解运动学问题，但计算效率更低。
+用关键点关系表示物体关节以扩展到关节物体操作，可能需要微调。",作者自述局限；作者失败分析；作者讨论中的改进建议,code,未来项出自附录A.11，并非本次推演；附录链接为https://arxiv.org/html/2409.01652v1#A1.SS11。,9
+L06,VLA,RT-2,RT-2,RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control,https://arxiv.org/html/2307.15818v1,arXiv:2307.15818v1（2023-07-28）,5 Limitations；Appendix G Example Failure Cases,The model’s physical skills are still limited to the distribution of skills seen in the robot data,模型的物理技能仍局限于机器人数据中出现过的技能分布。,"引入网络规模的视觉语言经验改善了语义和视觉泛化，但没有使机器人获得新的运动技能；物理技能仍受机器人训练数据限制。
+模型计算成本高；对于需要高频控制的场景，实时推理可能成为主要瓶颈。
+当时可用于构建 RT-2 的通用可访问 VLM 很少。
+附录 G 明确报告未见物体动力学上的失败：模型能按指令到达正确物体，却无法控制笔滚落、香蕉接触位置与质心不一致等情况。
+附录 G 列出的其他失败包括按指定部位抓取、机器人数据外的新运动、灵巧或精确运动、需要多层间接推理的任务。","研究通过人类视频等新的数据收集方式获得新技能。
+研究量化和蒸馏，以提升控制频率或降低硬件成本。
+作者希望出现更多开源 VLM，或专有 VLM 开放微调接口。
+作者提出假设：增加环境、物体及交互动力学的多样性，可能改善动力学泛化。",作者自述局限；作者失败分析；作者未来方向,"policy
+action
+video
+runtime",短引来自第 5 节。附录 G 的动力学与指定部位、精细运动等失败均由作者明确列举。技能多样性不足是作者解释；扩大动力学数据是作者假设，未改写为已证事实。以上为该 2023 年版本自述，不等于 2026 年全领域仍未解决。,17
+L07,VLA,OpenVLA,OpenVLA,OpenVLA: An Open-Source Vision-Language-Action Model,https://arxiv.org/html/2406.09246v1,arXiv:2406.09246v1（2024-06-13）,6 Discussion and Limitations,"it does not yet offer very high reliability on the tested tasks, typically achieving <90% success rate.",它在所测任务上尚未达到很高的可靠性，成功率通常低于 90%。,"当时模型仅支持单幅图像观测。
+推理吞吐量仍需提高，才能用于 ALOHA 等高频控制系统。
+所测任务的可靠性仍不足，成功率通常低于 90%。
+受计算资源限制，基础 VLM 规模、机器人与网络视觉语言数据的联合训练效果、适合 VLA 的视觉特征等设计问题研究不足。","支持多图像、本体感知输入和观测历史；探索以交错图文数据预训练的 VLM。
+探索动作分块、推测解码等推理优化，并测试更灵巧的双臂任务。
+进一步研究基础模型规模、联合训练数据与视觉特征的设计选择。",作者自述局限；作者未来方向,"policy
+action
+memory
+runtime
+data",所有条目均来自第 6 节作者自述；没有把引言对旧策略的泛化批评当成 OpenVLA 自身局限。仅说明原始 OpenVLA v1，不能用于描述后续 OFT 等版本。,17
+L08,VLA,π0,π0,π0: A Vision-Language-Action Flow Model for General Robot Control,https://arxiv.org/html/2410.24164v1,arXiv:2410.24164v1（2024-10-31）,"VII Discussion, Limitations, and Future Work",understanding what type of data is more helpful to add and how it should be weighted remains an open problem.,应该增加哪类数据、如何为数据分配权重，仍是一个开放问题。,"实验尚未全面说明预训练数据应如何组成；作者采用了所有可用数据，尚不清楚增加哪类数据最有帮助、如何加权。
+并非所有评测任务都能可靠完成；尚不清楚如何预测达到近乎完美表现需要的数据数量与类型。
+不同任务和不同机器人数据组合究竟产生多少正迁移，仍有待确定。
+作者对照实验指出：仅用高质量后训练数据训练的模型较脆弱，不能可靠恢复错误；仅零样本运行预训练模型，也不总能表现出后训练数据中的流畅策略。","进一步理解预训练数据的组成、权重与实现高可靠性的数据需求。
+研究通用性是否能延伸至自动驾驶、导航和足式运动等差异更大的领域。",作者自述局限；作者失败分析；作者未来方向,"action
+data
+learning",来自第 VII 节。最后一项局限明确对应作者的两种消融配置，不能改写为完整 π0 配方无法恢复错误。跨领域通用性是作者留待未来验证的内容。,20
+L09,VLA,π0.5,π0.5,π0.5: a Vision-Language-Action Model with Open-World Generalization,https://arxiv.org/html/2504.16054v1,arXiv:2504.16054v1（2025-04-22）,VI Discussion and Future Work,in some cases the high-level sub-task inference is easily distracted,在一些情况下，高层子任务推断容易受到干扰。,"陌生抽屉把手、机械上难以打开的柜门等环境仍带来持续困难。
+部分可观测性仍导致失败，例如机械臂遮挡了应该擦拭的液体。
+高层子任务推断有时容易受干扰，例如收纳物品时反复开关同一个抽屉。
+模型处理的提示较简单；可接受提示的复杂度取决于训练数据。
+模型使用的上下文相对有限。","通过更好的联合训练、迁移和更大数据集处理上述挑战。
+用人工或合成的更复杂、多样标注纳入更复杂偏好和指令。
+加入更丰富上下文和记忆，用于跨房间导航、记忆物品存放位置等部分可观测任务。
+探索更广泛的异构数据，以及口头指令和人类提供上下文知识的其他方式。",作者自述局限；作者失败分析；作者未来方向,"action
+reason_action
+memory
+data",所有条目均来自第 VI 节明确的 limitations 与 future work 段落。没有添加组合泛化、条件接口等我们此前自行推导的问题。,10
+L10,VLA,CAG,CAG,When Vision Overrides Language: Evaluating and Mitigating Counterfactual Failures in VLAs,https://arxiv.org/html/2602.17659v1,arXiv:2602.17659v1,VI-C Ablation Studies — Training Strategies；Guidance Scales,but over-guidance degrades manipulation accuracy.,但过强的引导会降低操作精度。,"在作者对 π0.5 和 OpenVLA-OFT 的引导强度实验中，增强引导能减轻视觉捷径，但过强引导会降低操作精度。
+作者测试的随机语言丢弃训练配置表现较差：语言条件被削弱，行为严重退化为依赖视觉。",,作者失败分析,"policy
+action",没有找到单列的 Limitations 节或明确的后续研究承诺；这里仅收录作者对自身引导方法与消融配置的明确负面分析。不能把过强引导这一方法现象概括为所有 VLA 中语义与运动天然冲突。论文 VI-B 还报告所测基线的反事实失败，但本条未将前人基线失败冒充 CAG 自身局限。,5
+L11,VLA,ExecVLA,ExecVLA,ExecVLA: Following Fine-Grained Execution Constraints in Vision-Language-Action Models with Bi-Level Action Representation,https://arxiv.org/html/2603.17524v2,arXiv:2603.17524v2（2026-10-08）,5 Conclusion and Limitation,While our current evaluation is limited to tabletop settings,当前评估局限于桌面操作场景。,作者明确指出当前评估仅覆盖桌面操作。,将双层表示扩展到具有更复杂运动学依赖的全身操作。,作者自述局限；作者未来方向,action,v2 标题是 ExecVLA，但第 5 节正文仍将方法称为 KineVLA；如实保留版本与章节，不据此自行添加限制。原文没有把未见组合泛化、词义控制通道等写成该节局限，因此未收入。,9
+L12,VLA,LIT,LIT,Breaking the Vision–Action Shortcut: Latent Interface Training for Generalizable Robotics Foundation Models,https://arxiv.org/html/2609.12641v1,arXiv:2609.12641v1（2026-09-11）,V Limitations and Conclusion,evaluation at larger real-world scales remains open.,更大规模的真实世界评估仍有待开展。,虽然已观察到对视觉变化的鲁棒性改善，更大规模的真实世界评估仍是开放事项。,"将 LIT 扩展到更大、更多样的机器人示范数据集。
+在更广泛的任务与环境中评估。",作者自述局限；作者未来方向,"action
+wam
+data",仅收入第 V 节作者明确陈述。没有把终点位姿可能丢失轨迹约束、缺少反事实意图评估等我们此前的推断列为作者局限。,7
+L13,VLA,NegaAlign,NegaAlign,Tell Robot What Not to Do: A Negation Understanding Perspective,https://arxiv.org/html/2610.11952v1,arXiv:2610.11952v1（2026-10-08）,5 Conclusion,the potential for performance degradation in highly complex or ambiguous negated instructions,在高度复杂或有歧义的否定指令下，性能可能下降。,"依赖现有预训练 VLA，而这些 VLA 可能不能覆盖所有否定场景。
+在高度复杂或有歧义的否定指令下可能出现性能下降。",作者将复杂或有歧义的否定指令所带来的性能退化列为未来工作方向，但没有在该节给出具体解决方法。,作者自述局限；作者未来方向,"policy
+action",第 5 节直接包含 limitations 句，明确自述这两项；这里的性能退化是作者写明的潜在风险，不改写为已由特定实验确证的失败。,12
+L14,WAM,UWM,uwm,Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets,https://arxiv.org/html/2504.02792v1,arXiv:2504.02792v1,VII Limitations,the forward dynamics reconstruction may often contain artifacts which may reduce efficacy when planning with this model.,前向动力学重建往往可能含有伪影，这可能降低使用该模型进行规划的效果。,"模型尚未通过大规模人类视频学习来跨越本体差异。
+虽然动作预测得到改善，前向动力学重建仍可能出现伪影，影响规划效用。","借助生成模型研究的新进展改善重建伪影。
+利用更密集的视频预测进一步改进。","作者自述局限
+作者未来方向","wam
+world
+planning
+video",直接取自 VII Limitations；没有把未开展规划实验自行写成作者承认。outputs/robotics-literature-expanded.json 对应 id=uwm、编号69；该文件未发现独立名为 VAM 的条目。,17
+L15,WAM,Motus,motus,Motus: A Unified Latent Action World Model,https://arxiv.org/html/2512.13030v1,arXiv:2512.13030v1,6 Conclusion and Limitations,"pursue more universal motion priors, and learn latent actions from internet-scale general videos for embodied intelligence.",寻求更通用的运动先验，并从互联网规模的通用视频中学习用于具身智能的潜在动作。,,"探索更先进的统一模型架构。
+寻求更通用的运动先验。
+从互联网规模的通用视频中学习潜在动作。",作者未来方向,"wam
+video",章节标题含 Limitations，但该节实际只明确列出未来探索方向，未找到对自身具体剩余局限的直接陈述；因此 limitations 留空。未将旧文献表里由分析者写出的预算/指标质疑转成作者自述。,16
+L16,WAM,Motus2,motus2,Motus2: A Self-Evolving General World Model for Dexterous Manipulation,https://arxiv.org/html/2608.30237v1,arXiv:2608.30237v1,7 Limitations and Future Work — Limitations; Future Work,The primary limitation of Motus2 is the scalability of wearable tactile supervision across embodiments.,Motus2 的主要局限是，可穿戴触觉监督难以跨本体扩展。,"触觉手套自身形变、材料应变与内部织物接触会产生噪声，难以与有效外部接触区分。
+人手与现有灵巧手的几何差异，使同一手套版型难以通用，人类手套数据不能直接迁移到专用机器人手套；这限制跨本体触觉学习的规模与可靠性。","改进可穿戴触觉材料、制造及拟人灵巧手设计，扩大全手触觉数据并缩小形态差异。
+使用更强的视频基础模型与统一多模态模型，支持更长时域预测和更忠实的多模态模拟。
+进一步统一视觉、语言、动作、触觉和价值信号，并从大规模交互中持续改进。","作者自述局限
+作者未来方向","wam
+planning
+learning
+data",直接取自 §7。没有纳入小样本、同源误差或优化作弊等分析者推断；这些不是该节作者明确自述的局限。,14
+L17,WAM,DreamZero,dreamzero,World Action Models are Zero-shot Policies,https://arxiv.org/html/2602.15922v1,arXiv:2602.15922v1,6 Discussion and Future Work; H Failure Case Analysis,it inherits limitations common to behavior cloning on tasks requiring sub-centimeter precision,在需要亚厘米精度的任务上，它继承了行为克隆常见的局限。,"§6：WAM 的模型规模、数据规模和训练计算量的 scaling law 证据仍不足。
+§6：人类数据实验仍局限于小规模实验室数据；推理仍昂贵；视觉记忆仅约6秒。
+§6：钥匙插入、精细装配等亚厘米任务仍受行为克隆局限；广覆盖预训练可能缺少所需的密集示范。
+附录H：展示了视频计划错误随后被动作执行的案例，包括未画线而传笔，以及未先开烤箱而先拿面包。","§6：系统研究 WAM scaling law、大规模野外人类视频迁移及更快推理。
+§6：引入 System 2 规划器，或显著扩展 WAM 上下文以支持长任务。
+§6：进一步研究广泛泛化与精细操作的关系；附录H提出改善语言遵循及视觉规划可能改善执行。","作者自述局限
+作者失败分析
+作者未来方向","wam
+video
+runtime
+memory
+reason_action",短引来自 §6 High-Precision Tasks。其余为作者同节讨论及附录H失败案例的忠实概述，保留‘可能’语气；不将该失败分析推广为所有 WAM 的已证结论。原文另有本体设计假设，未在此扩展。,12
+L18,WAM,WorldEcho / WorldSync,worldecho_worldsync,Do Robotic World Models Really Follow Actions? Diagnosing and Aligning Action-Conditioned Generation for Policy Learning,https://arxiv.org/html/2608.24885v1,arXiv:2608.24885v1,5 Conclusion and Limitations,comprehensively probing long-horizon interactions across diverse embodiments and open-world environments remains a shared challenge,全面检验跨多种本体与开放世界环境的长时域交互，仍是一项共同挑战。,尽管 WorldEcho 扩大了评测覆盖，跨多本体和开放环境的长时域交互仍有待全面检验。,将全面检验多本体、开放环境中的长时域交互作为后续方向。,"作者自述局限
+作者未来方向","world
+planning
+learning",此处只收 §5 最后的自述范围；没有把论文引言中被评测旧模型的 off-expert 失败，写成 WorldSync 自身未解决问题。没有自行增加候选排序、模型作弊等问题。,14
+L19,WAM,HiTac-WAM,hitac_wam,HiTac-WAM: A Hierarchical Tactile World Action Model for Contact-Rich Robot Manipulation,https://arxiv.org/html/2608.19574v1,arXiv:2608.19574v1,VI Conclusion,forecast quality on model-generated action chunks is not evaluated separately,尚未单独评测模型生成动作块上的预测质量。,"未单独评测模型生成动作块上的预测质量。
+预测的滑移风险尚未针对在线检测进行校准。","直接评测模型生成候选和受控异常。
+探索 on-policy 适配、经不确定性校准的滑移预测，以及用于长时域接触操作的学习型纠正策略。","作者自述局限
+作者未来方向","wam
+planning
+execution",直接取自 VI Conclusion 最后一段，明确含 Despite these results 与 Future work；不是从实验未覆盖之处自行推断。,10
+L20,WAM,Agile-WAM,agile_wam,Agile-WAM: An Agile Tactile World Action Model for Contact-Rich Robot Control,https://arxiv.org/html/2609.20761v1,arXiv:2609.20761v1,IV-B 2 Inference Efficiency; V CONCLUSIONS,the actual control frequency may additionally be limited by factors such as the robot control interface and sensor sampling rate.,实际控制频率还可能受到机器人控制接口、传感器采样率等因素限制。,作者提醒：表中控制频率是策略推理支持的最大频率，实际部署还可能受控制接口和传感器采样率限制。,,作者自述局限（部署指标适用边界）,"wam
+runtime
+execution",通读结论并查找 limitation/future work，未找到专门的自身未解决问题或未来工作陈述。这里只保留 §IV-B 2 明说的部署指标边界；不能据此声称该方法已发生控制频率不足，也不使用引言对前人方法的批评填充。,20
+L21,GPT/Harness与执行,Show-Harness,Show-Harness,Show-Harness: Just a VLM Agent Can Play Robots,https://arxiv.org/html/2609.10522v1,arXiv:2609.10522v1；查阅日期 2026-10-12,§6 Conclusion and Limitations,Show-Harness is currently evaluated primarily on single- and dual-arm manipulation with parallel-jaw grippers.,Show-Harness 目前主要在使用平行夹爪的单臂和双臂操作上进行评估。,当前评估主要覆盖平行夹爪的单臂与双臂操作（§6）。,"扩展到人形机器人、灵巧手等更复杂本体（§6）。
+增加触觉、力反馈等感知模态，以支持接触更丰富、更精细的物理交互（§6）。",作者明确的适用范围限制与未来方向,harness,原文§6直接列出以上限制与方向。没有把引言对VLA或其他系统的批评算作本方法限制；未从实验设置额外推导实时性问题。该论文包含真实机器人实验，不能写成仅仿真。,13
+L22,GPT/Harness与执行,GPT-6 Astra / RoboDojo,GPT-6 Astra / RoboDojo,An Unexpected Robot Policy: Early Evaluations of GPT-6 Astra on RoboDojo and Beyond,https://arxiv.org/html/2609.24170v1,arXiv:2609.24170v1；查阅日期 2026-10-12,§4.4 Physical boundary；§5 LLM as policy on real hardware；§7 Conclusion；Appendix H Limitations；Appendix I Ethics statement,The observations do not separate missing physical knowledge from limitations of perception or the action interface,这些观察无法区分物理知识的缺失与感知或动作接口的限制。,"作者记录了动态目标漏抓、双臂交接失败，以及取新积木时撞倒已有结构；这些例子表明失败发生过，不代表其发生频率（§4.4）。
+仅有末端移动工具、RGB输入和受限历史，不能将接口因素与模型失败分离；连续接触或非准静态行为可能无法由该动作表示表达（附录H）。
+真机测试因反复不合理或不安全动作而中止，发生设备损坏；保留的33次试验是选择性诊断样本，不能估计普遍真机可靠性（§5、附录H/I）。
+基准和ICL探测只有一个评估种子；公开策略未按相同额外任务文本重跑；模型预训练污染未被量化（附录H）。
+单个示范协议不能证明ICL无效；交互扰动实验没有历史消融，无法分离学习适应、既有鲁棒性与普通反馈控制（附录H）。
+主要排序来自一个仿真器；推理延迟和动作时序的失败贡献未与感知、物理推理限制分离（附录H）。","测试执行中的纠正能否跨任务、跨本体迁移，并转为可靠精确的执行（§7）。
+在其他仿真器和真实机器人上进一步研究（附录H）。
+采用独立安全检查和停止机制，不仅依赖模型判断，并记录安全干预（附录I）。",作者报告的失败、评估限制与明确下一步,"harness
+execution",短引出自§4.4；其余为作者明确陈述的摘要。保留作者的因果不确定性：不能将动作/感知接口限制直接归因于缺乏物理知识。真机中止及仿真外推限制由作者自己提出。,16
+L23,GPT/Harness与执行,GPT-Policy,GPT-Policy,In-Context Robot Learning with VLM Agents,https://arxiv.org/html/2609.19138v1,arXiv:2609.19138v1；查阅日期 2026-10-12,§5 Discussion：Future Directions；Scope and Limitations；§6 Conclusion,The observed inter-arm collisions show that existing safeguards are insufficient by themselves for safe autonomous deployment.,观察到的双臂碰撞表明，仅靠现有防护措施不足以实现安全的自主部署。,"证据仅覆盖选定平台、模型和上下文条件下的小规模任务系列；消融不完整且预训练未知，限制了因果与新技能主张（§5）。
+上下文质量、观测—动作对齐、执行延迟和人工干预仍是约束；跨本体迁移及可靠自主运行需要更广泛评估（§5）。
+多次观察到双臂碰撞；接触执行和结果核验仍是不同的挑战（§5、§6）。","独立检查双臂轨迹、距离与接触的安全层，并报告碰撞、险情和安全干预（§5）。
+暴露抓取稳定性和接触后物体运动，结合滑移检测、力限制与局部恢复（§5）。
+将慢推理与快速VLA控制配合，研究何时由局部反馈触发重规划（§5）。
+主动选择观察位置和站位，配合空间记忆及底盘—机械臂协调（§5）。
+组合多段示范的子技能，保留已完成子目标并丢弃过时上下文（§5）。
+利用近期交互更新摩擦、柔顺性和物体响应预测，检验对物理变化的上下文适应（§5）。",作者明确的限制、实测失败与六项未来方向,"harness
+reason_action
+memory
+execution",标题另在https://arxiv.org/abs/2609.19138v1核对，因为HTML标题显示为Introduction。作者§5明确提出六个未来方向，本记录不将它们改写为本次新提出的问题，也不夸大为全领域空白。主实验为真机。,16
+L24,GPT/Harness与执行,GPT-6 + π0.5,GPT-6 + π0.5,Systematically Exploring the Capabilities of GPT-6 Astra as Embodied Policies,https://arxiv.org/html/2609.38537v1,arXiv:2609.38537v1；查阅日期 2026-10-12,§5.3 Recovery and Lost Policy Successes；§9.1–9.4 Discussion；§10 Conclusion,"Detecting an error, proposing a correction, and verifying its effect are separate demands.",发现错误、提出纠正，以及验证纠正的效果，是三个不同的要求。,"混合控制救回了部分独立策略失败的实例，也在部分独立策略成功的实例上失败；准确抓取、持续接触、搬运时底盘—机械臂协调及跨阶段状态跟踪仍会失败（§5.3、§9.2）。
+已知实例上的反馈改进不保证重复成功；正确诊断可能仍不能给出有效下一步动作（§9.3）。
+持续审核动作提案仍有较大推理成本，委托运动不一定减少审核调用（§9.4）。
+作者在密集运动控制实验中明确指出：推理期间暂停物理过程使延迟可容忍，但现实场景不能被假定会等待；需同时衡量推理延迟和物理反馈变化速度（§9.4）。
+直接手内控制和密集运动参考仍不可靠；生成有用决策与可靠产生、验证物理效果之间存在差距（§10）。","有效协作仍需要模型识别何时介入、何时将控制权交还策略（§10明确提出的待满足要求）。
+分别评估诊断、书面指导与持续控制；用重复试验和新状态迁移检验行为是否保持（§9.3的评估要求）。",作者讨论中的失败与能力限制、结论中的后续要求,"harness
+reason_action
+execution
+runtime",短引来自§9.2。暂停物理过程的批评在§9.4由作者明确提出，局部证据是密集运动控制，不把这一局部论断泛化成每项机械臂试验都相同。§9与§10没有独立Future Work标题；future字段准确标为作者要求而非本次方法推导。,13
+L25,GPT/Harness与执行,CheckVLA,CheckVLA,CheckVLA: Execution-Time Verification with Action-Conditioned World Model for Long-Horizon Mobile Manipulation,https://arxiv.org/html/2607.26789v1,arXiv:2607.26789v1；查阅日期 2026-10-12,Discussion（正文末尾，Conclusion之前）,"It does not guarantee recall, post-repair safety, or coverage under distribution shift.",它不保证召回率、修复后的安全性，也不保证分布变化下的覆盖率。,"校准只约束可交换的正常成功轨迹上第一次不必要介入的概率，不构成普遍安全保证。
+修复受延迟和策略能力约束：可执行后缀太短或没有可行替代动作时，即使警报正确也无法恢复。
+证据局限于RoboCasa365仿真、有限扰动族与冻结表示；感知、硬件时序或任务分布变化要求重新校准和测试。",动态考虑延迟的调度，以及硬件验证。,作者明确的保证边界、实验范围与下一步,"world
+planning
+reason_action
+execution
+runtime",全部来自Discussion的连续两段，作者自己将动态延迟调度和硬件验证称为下一步。没有将单纯仿真设置自动解释为失败。,12
+L26,GPT/Harness与执行,RESCUE,RESCUE,RESCUE: Is This Alarm Worth Acting On? Counterfactual Evaluation of VLA Runtime Monitors,https://arxiv.org/html/2610.13516v1,arXiv:2610.13516v1；查阅日期 2026-10-12,§V Discussion and Limitations,"Here we evaluate only Continue and one fixed scripted Recover, and make no claim about richer or learned recovery repertoires.",这里仅评估继续执行与一种固定脚本恢复，不对更丰富或学习得到的恢复动作集合作出主张。,"可恢复性依赖指定的干预集合、执行模型和剩余预算，不能当作机器人状态或策略固有的属性；仅评估继续执行与一种脚本恢复。
+全部实验为MuJoCo中的LIBERO/LIBERO-Plus，262个失败均为超时；硬件可能引入基准未覆盖的接触动力学、损坏、延迟和恢复成本。
+分支扰动与决策成本由实验设定，未从部署校准；仅测试两种VLA和四类监控器，没有训练新的检测器。
+轻量监控器只做到轨迹划分独立、并非基础任务独立，其误报率不能证明未见任务泛化；基础任务簇较少，区间可能偏乐观。
+两种策略在不同扰动轨道上失败，不能直接对比；增加分支采样也未使恢复窗口估计没有噪声。",,作者明确的适用条件与实证限制,"reason_action
+execution",全部来自§V。该节没有明确指定某一未来算法，因此future保持空数组；不能把作者未评估的更丰富恢复器直接转写为其明确提出的研究方案。,20
+L27,GPT/Harness与执行,RTC,RTC,Real-Time Execution of Action Chunking Flow Policies,https://arxiv.org/html/2506.07339v1,arXiv:2506.07339v1；查阅日期 2026-10-12,§6 Discussion and Future Work,it adds some computational overhead compared to methods that sample directly from the base policy.,与直接从基础策略采样的方法相比，它增加了一些计算开销。,"相较直接从基础策略采样，RTC有额外计算开销。
+真机实验覆盖若干操作任务，但更动态的场景尚未覆盖；作者举例腿式运动只出现在仿真基准中，未包含在真机结果中。",研究更动态的实际场景，例如腿式运动；作者认为这些场景可能更受益于实时执行。,作者明确的计算开销与评估覆盖限制,"action
+runtime
+execution",仅提取§6作者对自己方法的限制。RTC已有真机机械臂实验，不能写为只有仿真，也不能把尚未做腿式真机验证改写成已证实时控制失败。,15

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f4f7f7">
+  <meta name="description" content="拖动、缩放和探索大模型控制机械臂的研究脉络，查阅85篇论文与27篇作者自述局限的原文依据。">
+  <title>机械臂研究图谱 · VLA / WAM / GPT</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <button class="icon-button mobile-only" id="menu-toggle" aria-label="打开检索面板" aria-expanded="false">☰</button>
+    <a class="brand" href="#" id="home-link" aria-label="机械臂研究图谱，回到全图">
+      <svg viewBox="0 0 36 36" width="36" height="36" aria-hidden="true"><path d="M8 27V18L20 8l8 10-10 10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="27" r="4"/><circle cx="20" cy="8" r="4"/><circle cx="28" cy="18" r="4"/><circle cx="18" cy="28" r="3"/></svg>
+      <span><strong>机械臂研究图谱</strong><small>从预训练知识，到物理行动</small></span>
+    </a>
+    <span class="edition">嵌入关系版 <span>· 2026.10.12</span></span>
+    <div class="header-actions">
+      <button class="text-button" id="help-toggle">使用说明 <span>?</span></button>
+      <button class="text-button" id="reset-layout">重置布局</button>
+      <button class="primary-button" id="fit-top">查看全图 <span>↗</span></button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar" id="sidebar" aria-label="图谱与文献检索">
+      <div class="search-wrap"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.8"/></svg><input type="search" id="search" placeholder="搜索节点、论文、局限…" aria-label="搜索节点、论文和作者局限"><kbd>/</kbd></div>
+      <div class="tabs" role="tablist" aria-label="检索范围">
+        <button role="tab" id="tab-questions" data-tab="questions" aria-selected="true">问题 <span>4</span></button><button role="tab" id="tab-map" data-tab="map" aria-selected="false">图谱</button>
+        <button role="tab" id="tab-papers" data-tab="papers" aria-selected="false">论文 <span>85</span></button>
+        <button role="tab" id="tab-evidence" data-tab="evidence" aria-selected="false">作者证据 <span>27</span></button>
+      </div>
+      <div class="route-filters" id="route-filters" aria-label="按研究路线筛选">
+        <button data-route="all" class="active">全部</button><button data-route="vla"><i class="vla-dot"></i>VLA</button><button data-route="wam"><i class="wam-dot"></i>WAM</button><button data-route="harness"><i class="harness-dot"></i>GPT / Harness</button>
+      </div>
+      <div class="list-heading"><span id="list-title">研究脉络</span><span id="list-count"></span></div>
+      <div class="results" id="results" role="tabpanel" aria-labelledby="tab-map"></div>
+      <div class="sidebar-footer"><span class="live-dot"></span><span id="save-status">布局保存在本机浏览器</span><a href="evidence.csv" download title="下载27篇作者证据表" aria-label="下载27篇作者证据表">↓</a></div>
+    </aside>
+
+    <section class="canvas-shell" aria-label="可拖动和缩放的研究关系图">
+      <div class="canvas-heading"><div><span class="eyebrow">RESEARCH ATLAS</span><h1>研究走到哪里，问题出现在哪里</h1></div><div class="canvas-heading-actions"><button class="subtle-button" id="questions-view">问题与来源全图</button><button class="subtle-button" id="question-help">证据标准</button><button class="subtle-button" id="labels-toggle" aria-pressed="true">连线说明 <span class="toggle-indicator"></span></button></div></div>
+      <div id="viewport" class="viewport" tabindex="0" aria-label="研究图。拖动空白平移；滚轮缩放；点击节点查看详情；方向键平移，加减号缩放。">
+        <div id="world" class="world"><svg id="edges" class="edges" aria-label="研究节点之间的逻辑关系"></svg><div id="nodes"></div></div>
+        <div class="loading" id="loading"><span class="loader"></span>正在整理研究图谱…</div>
+      </div>
+      <div class="canvas-legend"><span><i class="vla-dot"></i>语言 / 动作</span><span><i class="wam-dot"></i>视频 / 世界模型</span><span><i class="harness-dot"></i>能力汇合</span><span><i class="evidence-dot"></i>虚线框：共同不足</span></div>
+      <div class="canvas-controls" aria-label="视图控制"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-value" title="重置为100%" aria-label="重置为100%">100%</button><button id="zoom-in" aria-label="放大">+</button><span class="control-divider"></span><button id="fit-view" title="适应全图" aria-label="适应全图">⛶</button><button id="undo-move" title="撤销上次节点移动" aria-label="撤销上次节点移动" disabled>↶</button></div>
+      <div class="minimap-wrap"><svg id="minimap" viewBox="0 0 230 150" role="img" aria-label="全图导航，点击可定位视野"></svg><span>全图导航</span></div>
+      <div class="gesture-hint" id="gesture-hint">点击 V1–V4，同时查看父节点与来源连线</div>
+    </section>
+
+    <aside class="inspector" id="inspector" aria-label="节点与论文详情" hidden>
+      <div class="inspector-bar"><span id="inspector-label">研究节点</span><button id="inspector-close" class="icon-button" aria-label="关闭详情">✕</button></div>
+      <div class="inspector-content" id="inspector-content"></div>
+    </aside>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="help-dialog"><button class="dialog-close icon-button" id="help-close" aria-label="关闭说明">✕</button><span class="eyebrow">HOW TO EXPLORE</span><h2>把图谱当作一张工作台</h2><ul><li><strong>自由浏览</strong><span>拖动空白平移，滚轮或双指缩放。右下角导航图可以快速定位。</span></li><li><strong>调整布局</strong><span>拖动任意节点，连线会随之更新。位置自动保存在当前浏览器；可撤销移动或重置布局。聚焦节点后，也可用 Alt + 方向键微调。</span></li><li><strong>打开论文</strong><span>点击节点查看关联论文；点击论文上的“↗”或“打开论文”进入原文。</span></li><li><strong>核对作者证据</strong><span>27篇条目包含作者短引、版本和章节。85篇参考文献库中的其余论文，不代表已提取其局限。</span></li></ul><p class="help-note">棕色虚线框是多篇论文共同不足的归组，虚线从报告该不足的研究节点指向问题；线上标注来源论文。点击虚拟节点会同时定位问题与父节点。点击“查看全图”可返回完整技术脉络。图谱其他连线表达已有的思路梳理；“作者证据”仅显示论文作者自己的陈述。较早论文的局限不自动等于今天仍未解决。</p><button id="help-done" class="primary-button">开始探索</button></dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

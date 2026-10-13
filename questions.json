@@ -1,0 +1,283 @@
+{
+  "questions": [
+    {
+      "id": "V1",
+      "title": "复杂指令支持仍受限",
+      "statement": "多篇作者都承认：所研究系统对更复杂语言指令的支持仍有边界。",
+      "parents": [
+        "code",
+        "action"
+      ],
+      "position": {
+        "x": 1360,
+        "y": 185
+      },
+      "sources": [
+        {
+          "evidence_id": "L03",
+          "field": "limitations",
+          "index": 1,
+          "excerpt": "比提示示例更长、更复杂或抽象层次不同的指令处理困难。"
+        },
+        {
+          "evidence_id": "L09",
+          "field": "limitations",
+          "index": 3,
+          "excerpt": "模型处理的提示较简单；可接受提示的复杂度取决于训练数据。"
+        },
+        {
+          "evidence_id": "L13",
+          "field": "limitations",
+          "index": 1,
+          "excerpt": "在高度复杂或有歧义的否定指令下可能出现性能下降。"
+        }
+      ],
+      "origin": "生成程序和学习动作策略都试图把语言要求落实为行为。Code as Policies、π0.5 与 NegaAlign 在各自局限章节仍指出复杂指令支持的边界，因此将这些作者陈述归为同一个问题节点。",
+      "scope": "3 篇直接依据。分别涉及超出提示示例的复杂度、训练标注支持的复杂度，以及复杂或歧义否定指令；保留各自适用范围。",
+      "commonality": "共同点是输入指令复杂度的支持范围有限。三篇都直接讨论语言指令复杂度，而非仅共享“泛化不足”等宽泛表述。",
+      "non_claim": "这些论文没有共同证明“原子技能都会，但未见指令组合必然失败”，也没有共同证明某一种条件接口是原因。NegaAlign 的表述是可能发生退化。",
+      "legacy_note": "旧 Q1“已会的操作能否按新组合完成”改为此节点；删除未获三篇共同支持的组合机制断言。",
+      "parent_links": [
+        {
+          "parent_id": "code",
+          "evidence_ids": [
+            "L03"
+          ],
+          "label": "Code as Policies",
+          "reason": "超出提示示例的复杂指令"
+        },
+        {
+          "parent_id": "action",
+          "evidence_ids": [
+            "L09",
+            "L13"
+          ],
+          "label": "π0.5 / NegaAlign",
+          "reason": "复杂指令支持有限"
+        }
+      ],
+      "short_title": "复杂指令支持有限"
+    },
+    {
+      "id": "V2",
+      "title": "观测历史与任务记忆仍受限",
+      "statement": "所引模型对历史观测或上下文的支持有限；三篇作者都提出扩展历史、上下文或记忆。",
+      "parents": [
+        "action",
+        "wam"
+      ],
+      "position": {
+        "x": 1360,
+        "y": 1035
+      },
+      "sources": [
+        {
+          "evidence_id": "L07",
+          "field": "limitations",
+          "index": 0,
+          "excerpt": "当时模型仅支持单幅图像观测。"
+        },
+        {
+          "evidence_id": "L09",
+          "field": "limitations",
+          "index": 4,
+          "excerpt": "模型使用的上下文相对有限。"
+        },
+        {
+          "evidence_id": "L17",
+          "field": "limitations",
+          "index": 1,
+          "excerpt": "视觉记忆仅约6秒。"
+        }
+      ],
+      "origin": "VLA 与 WAM 在当前观测上产生动作，记忆路线进一步利用过去信息。OpenVLA、π0.5 和 DreamZero 仍分别报告单图、有限上下文或短视觉记忆，由此形成对历史支持边界的共同节点。",
+      "scope": "3 篇直接依据。OpenVLA 为 v1 单图输入，π0.5 为所引版本的有限上下文，DreamZero 为约 6 秒视觉记忆。",
+      "commonality": "共同点是可用观测历史或上下文的范围有限，并且三篇作者都明确提出扩展历史、上下文或记忆。",
+      "non_claim": "不能据此断言信息被表示压缩丢失、策略没有利用已有信息，或增加上下文就能解决所有接触失败。三者的机制与后果不完全相同。",
+      "legacy_note": "旧 Q2“接触判断究竟缺哪一步”没有三篇支持同一诊断机制；改为有直接共同证据的历史与记忆边界。",
+      "parent_links": [
+        {
+          "parent_id": "action",
+          "evidence_ids": [
+            "L07",
+            "L09"
+          ],
+          "label": "OpenVLA / π0.5",
+          "reason": "单图或有限上下文"
+        },
+        {
+          "parent_id": "wam",
+          "evidence_ids": [
+            "L17"
+          ],
+          "label": "DreamZero",
+          "reason": "视觉记忆约 6 秒"
+        }
+      ],
+      "short_title": "历史与记忆有限"
+    },
+    {
+      "id": "V3",
+      "title": "推理开销与吞吐仍是部署约束",
+      "statement": "多篇作者仍报告较高推理开销，或指出吞吐需要提高。",
+      "parents": [
+        "action",
+        "wam",
+        "reason_action"
+      ],
+      "position": {
+        "x": 2045,
+        "y": 395
+      },
+      "sources": [
+        {
+          "evidence_id": "L06",
+          "field": "limitations",
+          "index": 1,
+          "excerpt": "模型计算成本高；对于需要高频控制的场景，实时推理可能成为主要瓶颈。"
+        },
+        {
+          "evidence_id": "L07",
+          "field": "limitations",
+          "index": 1,
+          "excerpt": "推理吞吐量仍需提高，才能用于 ALOHA 等高频控制系统。"
+        },
+        {
+          "evidence_id": "L17",
+          "field": "limitations",
+          "index": 1,
+          "excerpt": "推理仍昂贵；"
+        },
+        {
+          "evidence_id": "L24",
+          "field": "limitations",
+          "index": 2,
+          "excerpt": "持续审核动作提案仍有较大推理成本，委托运动不一定减少审核调用（§9.4）。"
+        }
+      ],
+      "origin": "大模型通过动作策略、WAM 和推理协作进入执行闭环，但这些路线的论文均保留了推理成本或吞吐限制。因此把模型产生下一步控制所需的计算与调用开销单独归组。",
+      "scope": "4 篇直接依据。分别报告高频推理、吞吐、WAM 推理开销，以及持续审核动作提案的调用成本；没有把它们当成统一硬件条件下的速度比较。",
+      "commonality": "共同点是推理计算或调用开销仍构成部署限制。RT-2 与 OpenVLA 明确联系高频控制；DreamZero 与 GPT-6 + π0.5 分别保留昂贵推理和持续审核成本。",
+      "non_claim": "这些陈述不说明所有方法都不能实时运行，也不说明各系统控制频率可直接比较。暂停物理过程的批评只保留在其对应实验范围内。",
+      "legacy_note": "旧 Q3“模型选中的动作真机会更好吗”缺少三篇对真实动作排序这一窄问题的直接共同自述，未继续作为共同不足。这里改列证据充分的推理效率与成本问题。",
+      "parent_links": [
+        {
+          "parent_id": "action",
+          "evidence_ids": [
+            "L06",
+            "L07"
+          ],
+          "label": "RT-2 / OpenVLA",
+          "reason": "高频推理与吞吐限制"
+        },
+        {
+          "parent_id": "wam",
+          "evidence_ids": [
+            "L17"
+          ],
+          "label": "DreamZero",
+          "reason": "推理仍昂贵"
+        },
+        {
+          "parent_id": "reason_action",
+          "evidence_ids": [
+            "L24"
+          ],
+          "label": "GPT-6 + π0.5",
+          "reason": "持续审核成本"
+        }
+      ],
+      "short_title": "推理开销与吞吐受限"
+    },
+    {
+      "id": "V4",
+      "title": "发现失败仍不保证有效恢复",
+      "statement": "识别错误之后，能否恢复仍取决于修正动作、干预能力与剩余执行条件。",
+      "parents": [
+        "reason_action",
+        "planning",
+        "execution"
+      ],
+      "position": {
+        "x": 1980,
+        "y": 1085
+      },
+      "sources": [
+        {
+          "evidence_id": "L24",
+          "field": "limitations",
+          "index": 1,
+          "excerpt": "已知实例上的反馈改进不保证重复成功；正确诊断可能仍不能给出有效下一步动作（§9.3）。"
+        },
+        {
+          "evidence_id": "L25",
+          "field": "limitations",
+          "index": 1,
+          "excerpt": "修复受延迟和策略能力约束：可执行后缀太短或没有可行替代动作时，即使警报正确也无法恢复。"
+        },
+        {
+          "evidence_id": "L26",
+          "field": "limitations",
+          "index": 0,
+          "excerpt": "可恢复性依赖指定的干预集合、执行模型和剩余预算，不能当作机器人状态或策略固有的属性；仅评估继续执行与一种脚本恢复。"
+        }
+      ],
+      "origin": "推理纠偏、世界模型监测与恢复评估都试图改善执行出现问题时的干预。GPT-6 + π0.5、CheckVLA 和 RESCUE 分别明确区分诊断正确与动作有效、报警正确与可修复、以及状态与给定干预下的可恢复性。因此形成这个共同问题节点。",
+      "scope": "3 篇直接依据。包含 GPT 与策略协作、VLA 后缀修复、指定恢复器评估；不把后两篇写成 GPT 接管实验。",
+      "commonality": "共同点是失败识别本身不足以确定成功恢复：还要存在有效修正或可行干预，并满足时间、预算和执行条件。",
+      "non_claim": "不能据此声称三篇都研究了“何时调用 GPT、何时采纳返回建议”的双重决策，也不能认为它们没有恢复能力。RESCUE 只评估继续执行与一种脚本恢复。",
+      "legacy_note": "旧 Q4“GPT 建议返回后还应采用吗”收窄为作者共同支持的识别与有效恢复之间的差距；删除把三篇都当作 GPT 调度证据的推断。",
+      "parent_links": [
+        {
+          "parent_id": "reason_action",
+          "evidence_ids": [
+            "L24"
+          ],
+          "label": "GPT-6 + π0.5",
+          "reason": "诊断正确仍可能修正无效"
+        },
+        {
+          "parent_id": "planning",
+          "evidence_ids": [
+            "L25"
+          ],
+          "label": "CheckVLA",
+          "reason": "报警正确仍受修复能力限制"
+        },
+        {
+          "parent_id": "execution",
+          "evidence_ids": [
+            "L26"
+          ],
+          "label": "RESCUE",
+          "reason": "恢复依赖干预与剩余预算"
+        }
+      ],
+      "short_title": "发现失败 ≠ 有效恢复"
+    }
+  ],
+  "audit": [
+    {
+      "old_title": "旧 Q1 → V1",
+      "decision": "旧 Q1“已会的操作能否按新组合完成”改为此节点；删除未获三篇共同支持的组合机制断言。"
+    },
+    {
+      "old_title": "旧 Q2 → V2",
+      "decision": "旧 Q2“接触判断究竟缺哪一步”没有三篇支持同一诊断机制；改为有直接共同证据的历史与记忆边界。"
+    },
+    {
+      "old_title": "旧 Q3 → V3",
+      "decision": "旧 Q3“模型选中的动作真机会更好吗”缺少三篇对真实动作排序这一窄问题的直接共同自述，未继续作为共同不足。这里改列证据充分的推理效率与成本问题。"
+    },
+    {
+      "old_title": "旧 Q4 → V4",
+      "decision": "旧 Q4“GPT 建议返回后还应采用吗”收窄为作者共同支持的识别与有效恢复之间的差距；删除把三篇都当作 GPT 调度证据的推断。"
+    }
+  ],
+  "meta": {
+    "minimum_independent_papers": 3,
+    "evidence_scope": "跨论文所引版本的作者自述；不等于全领域至今未解决的证明",
+    "source": "robotics-author-limitations.json",
+    "verified_date": "2026-10-12"
+  }
+}
